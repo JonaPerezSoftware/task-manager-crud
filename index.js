@@ -27,12 +27,12 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req, res) => {
     const task = tasks.find(t => t.id === parseInt(req.params.id));
     if (!task) return res.status(404).json({ error: 'Tarea no encontrada' });
-    
+
     const { title, description, status } = req.body;
     if (title) task.title = title;
     if (description) task.description = description;
     if (status) task.status = status;
-    
+
     res.json(task);
 });
 
@@ -40,7 +40,7 @@ app.put('/tasks/:id', (req, res) => {
 app.delete('/tasks/:id', (req, res) => {
     const taskIndex = tasks.findIndex(t => t.id === parseInt(req.params.id));
     if (taskIndex === -1) return res.status(404).json({ error: 'Tarea no encontrada' });
-    
+
     tasks.splice(taskIndex, 1);
     res.status(204).send();
 });
@@ -48,3 +48,5 @@ app.delete('/tasks/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`Task Manager API escuchando en http://localhost:${port}`);
 });
+
+//Modificado
